@@ -119,9 +119,9 @@ html {
 
   height: auto;
 
-  scroll-snap-align: start;
-  /* Makes snap require more intentional scroll */
-  scroll-snap-stop: always;
+  /* scroll-snap-align: start;
+  /* Makes snap require more intentional scroll 
+  scroll-snap-stop: always; */
 }
 
 .eraHeader {
