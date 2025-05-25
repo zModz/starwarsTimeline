@@ -1,0 +1,377 @@
+@import url("https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap");
+
+@font-face {
+  font-family: "Aurebesh";
+  src: url(./fonts/aurebesh/Aurebesh.otf) format("opentype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Distant Galaxy";
+  src: url(./fonts/sf-distant-galaxy-font/SfDistantGalaxy-0l3d.ttf)
+    format("opentype");
+  font-weight: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(./media/BfemybeKVXCf9pgX9WCxsc-1200-80.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+#landing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f01a;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  height: 100vh;
+  font-family: "Distant Galaxy", sans-serif;
+  letter-spacing: 1.5px;
+}
+
+#landing h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+#landing h1::after {
+  content: "Star Wars Timeline";
+  font-family: "Aurebesh", sans-serif;
+  font-size: 0.8rem;
+  display: block;
+  width: 100%;
+  height: 2px;
+}
+
+#landing p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+#landing p::after {
+  content: "Explore the timeline of the Star Wars universe.";
+  font-family: "Aurebesh", sans-serif;
+  font-size: 0.8rem;
+  display: block;
+  width: 100%;
+  height: 2px;
+}
+
+#start-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#start-button:hover {
+  background-color: #0056b3;
+}
+#start-button:active {
+  background-color: #004085;
+}
+#start-button:focus {
+  outline: none;
+}
+#start-button:focus-visible {
+  outline: 2px solid #0056b3;
+  outline-offset: 2px;
+}
+#start-button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.timelineContainer {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.era {
+  background-color: #f0f0f01a;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-family: "Distant Galaxy", sans-serif;
+  letter-spacing: 1.5px;
+
+  height: auto;
+
+  scroll-snap-align: start;
+  /* Makes snap require more intentional scroll */
+  scroll-snap-stop: always;
+}
+
+.eraHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.eraHeader h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.eraHeader p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  padding-block: 50px;
+  font-family: "Distant Galaxy", sans-serif;
+  letter-spacing: 1.5px;
+
+  /* Optional: to visually limit horizontal size without affecting vertical growth */
+  max-width: 2000px;
+}
+
+/* The actual timeline (the vertical ruler) */
+/* .timeline::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+} */
+
+.timeline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  background-color: white;
+}
+
+/* Container around content */
+.container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+  margin-top: 20px;
+}
+
+/* The circles on the timeline */
+.container::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid #ff9f55;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+.left {
+  left: 0;
+}
+
+/* Place the container to the right */
+.right {
+  left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -16px;
+}
+
+/* The actual content */
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: rgba(255, 255, 255, 1);
+  position: relative;
+  border-radius: 6px;
+}
+
+/* The content image */
+.content img {
+  width: 150px;
+  border-radius: 15px;
+  margin-right: 20px;
+}
+
+/* The content text */
+.content .infoText {
+  padding: 10px;
+  border-radius: 6px;
+  flex-grow: 1;
+}
+
+/* The content title */
+.content .infoText img {
+  margin: 0;
+  width: 250px;
+  border-radius: 0%;
+}
+
+/* The content description */
+.content .infoText p {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #000;
+  font-family: "Cal Sans", sans-serif;
+  letter-spacing: 0px;
+}
+
+/* The content date */
+.tag {
+  padding: 5px 10px;
+  background-color: #ff9f55;
+  color: white;
+  border-radius: 6px;
+}
+
+/* The content date */
+.show {
+  background-color: aqua;
+}
+
+.comic {
+  background-color: yellowgreen;
+}
+
+.movie {
+  background-color: blueviolet;
+}
+.game {
+  background-color: forestgreen;
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  top: -20px;
+  left: 15px;
+}
+
+.invert {
+  filter: invert(1);
+}
+
+.black {
+  filter: brightness(0%);
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+  /* Place the timelime to the left */
+  .timeline::after {
+    left: 31px;
+  }
+
+  /* Full-width containers */
+  .container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  /* Make sure that all arrows are pointing leftwards */
+  .container::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+
+  /* Make sure all circles are at the same spot */
+  .left::after,
+  .right::after {
+    left: 15px;
+  }
+
+  /* Make all right containers behave like the left ones */
+  .right {
+    left: 0%;
+  }
+
+  .poster {
+    display: none;
+  }
+
+  .content .infoText img {
+    width: 50%;
+    border-radius: 0%;
+  }
+
+  .tags {
+    font-size: smaller;
+  }
+}
